@@ -6,7 +6,7 @@
 /*   By: fmalphit <fmalphit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:49:37 by fmalphit          #+#    #+#             */
-/*   Updated: 2022/01/16 15:53:59 by fmalphit         ###   ########.fr       */
+/*   Updated: 2022/01/20 14:16:47 by fmalphit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	launch(t_data *data)
 	data->start_time = get_time();
 	if (launch_half(data, 0))
 		return (1);
-	usleep(10000);
 	if (launch_half(data, 1))
 		return (1);
 	if (pthread_create(&thread, NULL, monitoring, data))

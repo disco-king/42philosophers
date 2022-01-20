@@ -6,7 +6,7 @@
 /*   By: fmalphit <fmalphit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:50:12 by fmalphit          #+#    #+#             */
-/*   Updated: 2022/01/16 15:02:17 by fmalphit         ###   ########.fr       */
+/*   Updated: 2022/01/20 14:14:07 by fmalphit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
+	pthread_mutex_t *first = philo->left_fork;
+	pthread_mutex_t *second = philo->right_fork;
+	if(philo->position + 1 == philo->data->num_of_philos)
+	{
+		first = philo->right_fork;
+		second = philo->left_fork;
+	}
+	pthread_mutex_lock(first);
 	pthread_mutex_lock(philo->speech);
 	ft_putnbr_fd(get_time() - philo->data->start_time, 1);
 	ft_putstr_fd("\t", 1);
 	ft_putnbr_fd(philo->position + 1, 1);
 	ft_putendl_fd(FORK, 1);
 	pthread_mutex_unlock(philo->speech);
-	pthread_mutex_lock(philo->right_fork);
+	pthread_mutex_lock(second);
 	pthread_mutex_lock(philo->speech);
 	ft_putnbr_fd(get_time() - philo->data->start_time, 1);
 	ft_putstr_fd("\t", 1);
