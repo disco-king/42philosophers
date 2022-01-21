@@ -1,4 +1,4 @@
-#42 Philosophers Project
+42 Philosophers Project
 
 This is a working implementation of dining philosophers simulation project in 42.
 
